@@ -8,7 +8,7 @@ how an agent could take a publisher from "this deal isn't delivering" to a
 specific, scoped next action in minutes instead of the days or weeks it often
 takes today.
 
-### [▶ Try the live demo](https://REPLACE-WITH-YOUR-VERCEL-URL)
+### [▶ Try the live demo](https://adtech-diagnostic-agent.vercel.app/)
 
 ---
 
