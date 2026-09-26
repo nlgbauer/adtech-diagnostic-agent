@@ -1,40 +1,70 @@
 # AdTech Programmatic Deal Diagnostic Agent
 
-An illustrative, publisher-facing prototype: an agent that diagnoses why a
-programmatic PMP (private marketplace) deal is underperforming across the
-delivery funnel, then recommends a next action scoped to what it can honestly
-do. Fully synthetic data, no live calls, no model call at runtime. The
-diagnostic engine derives each failure cause from the generated funnel numbers,
-so the reasoning follows the data on every refresh.
+**A working prototype of an agent that diagnoses why a programmatic PMP deal
+isn't spending, and recommends what to do about it.**
 
-## Access
-The demo is behind a simple password gate (access control, not real security,
-all data is synthetic). Set the password in `src/Gate.jsx` (the `PASSWORD`
-constant). Current value: `demo2026`.
+Built by Nate Bauer as a portfolio piece to make a product hypothesis tangible:
+how an agent could take a publisher from "this deal isn't delivering" to a
+specific, scoped next action in minutes instead of the days or weeks it often
+takes today.
+
+### [▶ Try the live demo](https://REPLACE-WITH-YOUR-VERCEL-URL)
+
+---
+
+## The problem
+
+Private marketplace (PMP) deals are often set up but never reach meaningful
+scale. A publisher can see a deal isn't spending, but the root cause can sit
+anywhere across deal setup, supply eligibility, supply signals, pricing, deal
+availability, targeting, or demand participation. Finding it is slow, manual work
+that can take days or weeks per deal.
+
+## What the agent does
+
+- Watches a publisher's PMP deals and flags the ones underdelivering against pace.
+- Localizes the break to a single stage across an **8-stage delivery funnel**,
+  reading illustrative sell-side (SSP) and buy-side (DSP) signals.
+- Explains the cause in plain, publisher-facing language.
+- Recommends a next action **scoped to what it can honestly do** — and where the
+  lever is publisher-controlled, prepares that change for approval and verifies
+  it worked.
+
+The scope discipline is the point: the agent distinguishes what it can *fix*
+(prepare and apply), *guide* (identify but not apply), *escalate* (file a
+ticket), treat as a *demand opportunity*, or only *monitor* — and it holds
+confidence low rather than overclaiming when two causes aren't distinguishable.
+
+## What's in it
+
+| Tab | What it shows |
+|-----|---------------|
+| **Prototype** | The live diagnosis flow: pick a flagged deal, watch the agent localize the break and recommend an action. |
+| **Architecture** | Three diagrams: how the demo works, how the agent sits across the ecosystem, and its runtime over MCP. |
+| **Failure taxonomy** | The full set of failure modes, the action tier for each, and what's deliberately out of scope. |
+| **Background** | The problem, what I built, and how I'd measure success. |
+
+## How it's built
+
+- **React + Vite**, single-page, no backend.
+- The diagnostic engine is **deterministic**: each failure cause is derived from
+  generated funnel data, so the reasoning follows the numbers on every refresh —
+  no live model call at runtime, nothing that can silently drift.
+
+## A note on scope
+
+This is a self-directed prototype. The UI, data, benchmarks, and product
+mechanics are **illustrative and synthetic**, built from public information and
+experience in adjacent programmatic systems. It is not modeled on, affiliated
+with, or representative of any specific ad-tech platform's product or roadmap.
 
 ## Run locally
+
 ```bash
 npm install
 npm run dev
 ```
-Opens on http://localhost:5173
 
-## What it does
-- A publisher views their PMP deals across sell-side (SSP) supply and buy-side
-  (DSP) demand; some deals underperform.
-- Open a flagged deal and the agent localizes the break across an 8-stage
-  delivery funnel, then recommends a next action scoped to what it can honestly
-  do (prepare / guide / file ticket / demand opportunity / monitor).
-- Refresh regenerates the portfolio with new flagged deals.
-- Tabs: Prototype, Architecture (3 diagrams), Failure taxonomy, and Background.
+---
 
-## Deploy to Vercel
-Push to GitHub, then in Vercel "Add New Project" and import the repo. Vercel
-auto-detects Vite (build: `npm run build`, output: `dist`). No environment
-variables needed.
-
-## Notes
-- `noindex` is set in `index.html` so the demo stays out of search results.
-- All UI, data, benchmarks, and product mechanics are illustrative and synthetic,
-  built from public information and adjacent-domain experience. Not affiliated
-  with or representative of any specific ad-tech platform.
+*Built by Nate Bauer · product manager, ad-tech and programmatic.*
